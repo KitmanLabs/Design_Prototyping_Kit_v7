@@ -67,7 +67,7 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "@vitejs/plugin-react": "^4.0.3",
+    "@vitejs/plugin-react": "^6.3.0",
     "eslint": "^9.39.5",
     "eslint-plugin-design-system": "file:./eslint-plugin-design-system",
     "eslint-plugin-react": "^7.32.0",
@@ -79,7 +79,7 @@
     "stylelint": "^17.4.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-plugin-design-system": "file:./stylelint-plugin-design-system",
-    "vite": "^7.1.9",
+    "vite": "^8.3.8",
     "vitest": "^4.0.18"
   },
   "overrides": {

@@ -8,11 +8,20 @@ It runs entirely on mock data, uses the same components and design tokens as iP,
 
 ## Quick start
 
-1. **[Use this template](https://github.com/KitmanLabs/Design_Prototyping_Kit/generate)** to get your own copy
+1. **[Use this template](https://github.com/KitmanLabs/Design_Prototyping_Kit_v7/generate)** to get your own copy
 2. **Clone it** with [GitHub Desktop](https://desktop.github.com/) or `git clone`
 3. **Install and run:** `npm ci`, then `npm run dev`, and open http://localhost:3001
 
 Full setup, including Node and Claude Code: [Getting started](docs/getting-started.md).
+
+## Use the components, don't rebuild them
+
+This kit exists so prototypes use iP's real components. Build with what's here, as it is: the Playbook components, the floorplans, and the patterns their Storybook stories show, with their own styling.
+
+- **Don't rebuild a component the kit has.** If the Playbook `Autocomplete` with tick boxes does the job, use it rather than assembling a select of your own.
+- **Don't swap a Playbook component for a plain MUI one**, even to avoid the MUI X license watermark.
+- **Don't restyle components to match a screenshot.** Where the kit's version looks different from iP, that difference is part of what the prototype shows.
+- **If the kit has nothing for part of a design, say so and ask** before building anything. Build a custom component only when someone specifically asks for one.
 
 ---
 

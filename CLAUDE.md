@@ -32,6 +32,13 @@ src/
 └── utils/                 # Shared utilities (pickerDates.js for date pickers)
 ```
 
+## Use the components, don't rebuild them (critical)
+Prototypes here exist to use iP's real components. Use the Playbook components, floorplans and the patterns in their stories as they are, with their own styling.
+- Never assemble a stand-in for a component the kit has (for example a custom select instead of the Playbook `Autocomplete` with tick boxes).
+- Never swap a Playbook component for a plain MUI one, even to avoid the MUI X license watermark.
+- Never restyle a component to match a screenshot of iP.
+- If the kit has nothing for part of a design, say so and ask before building anything. Build a custom component only when the person specifically asks for one.
+
 ## Component priority (critical)
 Every page starts from a floorplan (`src/floorplans`): pick one with the decision list in `docs/reference/design-system.md` → "Floorplans", compose `PageFrame` with `PageHeader`, `PageToolbar`, `FloorplanFooter` and `PageState`, then fill it:
 

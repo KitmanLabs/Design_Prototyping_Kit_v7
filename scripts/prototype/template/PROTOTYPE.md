@@ -41,6 +41,7 @@ The MUI X licence key comes from the environment when running locally (`VITE_MUI
 
 ## Pages
 
+- Use the kit's components, don't rebuild them. Use the Playbook components, floorplans and the patterns in their stories as they are, with their own styling. Never assemble a stand-in for a component the kit has, never swap a Playbook component for a plain MUI one (even to avoid the MUI X license watermark), and never restyle one to match a screenshot. If the kit has nothing for part of a design, say so and ask; build a custom component only when someone specifically asks for one.
 - Every page starts from the iP page closest to the problem (an iP baseline) or from a floorplan: `PageFrame` with `PageHeader`, `PageToolbar`, `FloorplanFooter` and `PageState`. Each page owns one title, in its `PageHeader`.
 - Component priority: Playbook components from `src/playbook-components` first, then app components from `src/components`, then `@mui/material` only where neither has an equivalent. Import `Button` from the Playbook only.
 - Write variant props explicitly: `TextField`, `Select` and `FormControl` take `variant="filled"`; `Button` takes `variant="contained" disableElevation={true}`, with `color="secondary"` for secondary actions. Leave sizes to the theme.

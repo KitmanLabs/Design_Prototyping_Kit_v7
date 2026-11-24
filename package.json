@@ -31,7 +31,7 @@
     "@mui/x-charts": "^7.29.1",
     "@mui/x-chat": "9.0.0-alpha.21",
     "@mui/x-data-grid": "^7.29.13",
-    "@mui/x-data-grid-premium": "^7.29.13",
+    "@mui/x-data-grid-premium": "^9.18.0",
     "@mui/x-data-grid-pro": "^7.29.13",
     "@mui/x-date-pickers": "^7.29.4",
     "@mui/x-date-pickers-pro": "^7.29.4",

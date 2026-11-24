@@ -9,7 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig(() => {
   return {
     plugins: [
-      react({ include: /\.(jsx|js|tsx|ts)$/ }),
+      // Emotion's css prop: the Playbook's RichTextEditor, ConfirmationModal, DataGrid wrapper,
+      // FileUploads and DummySelect style themselves with it, as in iP. Without it they render unstyled.
+      react({ include: /\.(jsx|js|tsx|ts)$/, jsxImportSource: '@emotion/react' }),
     ],
     resolve: {
       // iP monorepo package names mapped onto src/playbook-components (vite.aliases.mjs).

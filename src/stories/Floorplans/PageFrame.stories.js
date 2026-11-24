@@ -60,8 +60,8 @@ const AnatomyDemo = ({ showFooter, startSelected, state }) => {
           checkboxSelection
           disableRowSelectionOnClick
           hideFooter
-          rowSelectionModel={{ type: 'include', ids: new Set(selection) }}
-          onRowSelectionModelChange={(model) => setSelection([...model.ids])}
+          rowSelectionModel={selection}
+          onRowSelectionModelChange={(model) => setSelection([...model])}
         />
       </Box>
     );

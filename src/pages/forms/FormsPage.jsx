@@ -24,8 +24,6 @@ import {
 } from '@mui/material';
 import { Button, DataGridPremium, GridPagination } from 'playbook-components'
 import { PageHeader } from '../../floorplans'
-import { resolveGridPrompt } from '../../utils/gridAiAssistant'
-import { FORMS_AI_SUGGESTIONS, COMPLETED_FORMS_AI_SUGGESTIONS } from '../../data/gridAiSuggestions'
 import { SearchOutlined, MoreVertOutlined, ArrowDropDownOutlined, KeyboardArrowDownOutlined, KeyboardArrowRightOutlined, CloseOutlined } from '@mui/icons-material'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
@@ -894,11 +892,6 @@ export default function FormsPage() {
                 rows={formsRows}
                 columns={formsColumns}
                 disableRowSelectionOnClick
-                aiAssistant
-                chartsIntegration
-                onPrompt={resolveGridPrompt}
-                aiAssistantSuggestions={FORMS_AI_SUGGESTIONS}
-                allowAiAssistantDataSampling
                 onRowClick={(params) => navigate(`/forms/${params.row.id}/assignments`)}
                 pagination
                 paginationModel={paginationModel}
@@ -1087,11 +1080,6 @@ export default function FormsPage() {
                 rows={completedFilteredRows}
                 columns={completedColumns}
                 disableRowSelectionOnClick
-                aiAssistant
-                chartsIntegration
-                onPrompt={resolveGridPrompt}
-                aiAssistantSuggestions={COMPLETED_FORMS_AI_SUGGESTIONS}
-                allowAiAssistantDataSampling
                 pagination
                 paginationModel={paginationModel}
                 onPaginationModelChange={setPaginationModel}

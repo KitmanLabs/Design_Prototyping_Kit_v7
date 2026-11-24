@@ -44,7 +44,7 @@ The MUI X licence key comes from the environment when running locally (`VITE_MUI
 - Every page starts from the iP page closest to the problem (an iP baseline) or from a floorplan: `PageFrame` with `PageHeader`, `PageToolbar`, `FloorplanFooter` and `PageState`. Each page owns one title, in its `PageHeader`.
 - Component priority: Playbook components from `src/playbook-components` first, then app components from `src/components`, then `@mui/material` only where neither has an equivalent. Import `Button` from the Playbook only.
 - Write variant props explicitly: `TextField`, `Select` and `FormControl` take `variant="filled"`; `Button` takes `variant="contained" disableElevation={true}`, with `color="secondary"` for secondary actions. Leave sizes to the theme.
-- MUI 9 APIs: `slotProps`, not the removed `InputProps`, `inputProps`, `InputLabelProps`, `SelectProps` or `PaperProps`; `<Grid size={{ xs: 12 }}>`; DataGrid `valueGetter(value, row)`.
+- MUI 7 APIs: `slotProps`, not the deprecated `InputProps`, `inputProps`, `InputLabelProps`, `SelectProps` or `PaperProps`; `<Grid size={{ xs: 12 }}>`; DataGrid `valueGetter(value, row)`.
 - Colors only through tokens (`var(--color-primary)`), never hex, rgb or hsl. Icons only in `*Outlined` variants. Sentence case for every label. Dates with moment.
 - One theme: `rootTheme`. Never add a second `createTheme`.
 - Use the words of the specification or the brief. Follow the Kitman Labs naming rules in copy: "athlete", not "player", and no em dashes.

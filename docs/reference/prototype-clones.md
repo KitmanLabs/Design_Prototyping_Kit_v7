@@ -38,7 +38,7 @@ The next version starts as a copy of the previous one, not a fresh clone, so the
 
 ## What never goes in
 
-Pages (`src/pages`), stories, tests, Figma Code Connect files, the AI Assistant dev server (`server/`), `.env` files, `.claude/` and `CLAUDE.md`. The kit's rules travel as `PROTOTYPE.md` instead, so sessions that read a prototype as evidence don't take them as their own instructions.
+Pages (`src/pages`), stories, tests, Figma Code Connect files, `.env` files, `.claude/` and `CLAUDE.md`. The kit's rules travel as `PROTOTYPE.md` instead, so sessions that read a prototype as evidence don't take them as their own instructions.
 
 The Playbook component docs (`README.md` files and `docs/` folders under `src/playbook-components`) stay in the kit too, except the HeaderNew readme that `PageHeader` points to for its props. A clone carries code, and the docs' prose drew warnings from the personal data guard.
 

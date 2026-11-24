@@ -14,8 +14,7 @@ import athletesData from '../data/athletes'
 import { availabilityFilters } from '../data/athleteViews'
 
 // Floorplan: Collection. Find, filter and act on the squad's athletes; a row opens the
-// athlete's profile (a Record). Search sits in the grid toolbar, next to the AI Assistant,
-// rather than in the page toolbar.
+// athlete's profile (a Record). Search sits in the grid toolbar rather than in the page toolbar.
 
 const plural = (count) => `${count} athlete${count === 1 ? '' : 's'}`
 

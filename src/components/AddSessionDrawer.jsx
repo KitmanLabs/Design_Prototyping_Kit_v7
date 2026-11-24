@@ -503,8 +503,8 @@ const AddSessionDrawer = ({ open, onClose, onSave, athletes = [], staff = [], ed
                             placeholder="No athletes selected"
                             sx={formFieldStyles}
                             slotProps={{
-                              ...params.slotProps,
-                              inputLabel: { shrink: true }
+                              // MUI v7: Autocomplete passes the label props as InputLabelProps
+                              inputLabel: { ...params.InputLabelProps, shrink: true }
                             }}
                           />
                         )}
@@ -544,8 +544,8 @@ const AddSessionDrawer = ({ open, onClose, onSave, athletes = [], staff = [], ed
                             placeholder="No staff selected"
                             sx={formFieldStyles}
                             slotProps={{
-                              ...params.slotProps,
-                              inputLabel: { shrink: true }
+                              // MUI v7: Autocomplete passes the label props as InputLabelProps
+                              inputLabel: { ...params.InputLabelProps, shrink: true }
                             }}
                           />
                         )}

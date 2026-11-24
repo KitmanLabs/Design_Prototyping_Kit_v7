@@ -63,7 +63,7 @@ If none fits, say why in a comment at the top of the page (`// Floorplan: none. 
 |---|---|---|
 | Page header | `PageHeader` (the Playbook's HeaderNew) | The page's title (see [Page titles](#page-titles)), with Back and a `backLabel` below a section. One primary action, one secondary, the rest in the overflow menu. At most four key facts. Page-level actions only, never Save. |
 | Tabs | Playbook `TabBar` | For views of a Collection or facets of a Record. Tabs show counts when they act as queues. |
-| Page toolbar | `PageToolbar`, `PageSearch`, `PageQuickFilters` (the Playbook QuickFilters) | Stays in view while the content scrolls. Search and quick filters on the left; the full set of filters lives in a right drawer, with active ones shown as chips. When the grid has the AI Assistant, search stays in the grid toolbar beside it, and the page toolbar keeps only the quick filters (see `/athletes`). |
+| Page toolbar | `PageToolbar`, `PageSearch`, `PageQuickFilters` (the Playbook QuickFilters) | Stays in view while the content scrolls. Search and quick filters on the left; the full set of filters lives in a right drawer, with active ones shown as chips. When the grid shows its own toolbar, search can stay in the grid toolbar, and the page toolbar keeps only the quick filters (see `/athletes`). |
 | Selection bar | `PageFrame`'s `selection` prop (the Playbook GenericActionBar) | Replaces the toolbar while rows are selected. Selection actions only. Use it instead of the grid's own `bulkActions` bar, so selection works the same on every Collection. |
 | Content | the floorplan | Pass `fill` when the content scrolls on its own (List-detail, Workspace). |
 | Record content | `RecordLayout`, `RecordSection`, `RecordFields`, `RecordNavigation` | Tabs for the Record's facets, not one long page. Each section has its own Edit, Cancel and Save. A supporting pane (timeline, notes) sits on the right from `lg` and moves under the main column below it. Previous and next sit at the right of the tabs when the Record was opened from a Collection, following the Collection's filtered order. |
@@ -166,13 +166,13 @@ There is one MUI theme, `rootTheme` in `src/playbook-components/themes.js`. The 
 
 `rootTheme` mirrors the real Playbook theme (`themes/index.ts` in KitmanLabs/kitman-playbook): the same palette, type scale, component defaults and overrides, with colour values from iP's `packages/common/src/variables/colors.js`. The status tokens in `design-tokens.css` use the same iP colours. Kit-only additions (sentence case through a CSS variable, token-driven button styles, secondary buttons inside data grids) are marked `Kit:` in the file. When the Playbook theme changes, update `rootTheme` to match.
 
-The kit runs Material UI 9 and MUI X 9 ahead of iP, which still uses Material UI 5. This is deliberate: iP is moving to MUI 9.
+The kit runs Material UI 7.3 and MUI X 7.29, the same versions as the Playbook (KitmanLabs/kitman-playbook), so prototypes use the components iP's Playbook ships.
 
-## MUI 9 APIs
+## MUI 7 APIs
 
-The repo is on Material UI 9 and MUI X 9. Props that were deprecated in v5 to v7 are removed, so the old forms no longer work.
+The repo is on Material UI 7 and MUI X 7. Props deprecated in v5 and v6 still work in v7 but are on their way out, so use the current forms.
 
-| Old | MUI 9 |
+| Deprecated | MUI 7 |
 |---|---|
 | TextField `InputProps` / `inputProps` / `InputLabelProps` / `SelectProps` / `FormHelperTextProps` | `slotProps={{ input, htmlInput, inputLabel, select, formHelperText }}` |
 | Menu, Popover, Drawer, Dialog `PaperProps` | `slotProps={{ paper: {...} }}` |
@@ -182,28 +182,29 @@ The repo is on Material UI 9 and MUI X 9. Props that were deprecated in v5 to v7
 | `<ListItem button>` | `<ListItemButton>` |
 | `LoadingButton` (`@mui/lab`) | `<Button loading>` |
 
+Autocomplete: `renderInput` receives `InputProps`, `inputProps` and `InputLabelProps`. When you pass `slotProps` to the TextField, merge them in (`slotProps={{ input: { ...params.InputProps, startAdornment } }}`), or the popup loses its anchor.
+
 Data Grid:
 - `valueGetter`, `valueFormatter` and friends take positional arguments: `(value, row, column, apiRef)`.
-- `rowSelectionModel` is `{ type: 'include' | 'exclude', ids: Set }`. Pass `disableRowSelectionExcludeModel` when you need the ids to always be the selected rows, and convert with `[...model.ids]`.
-- The toolbar slot only renders with `showToolbar`. Custom toolbars must render toolbar parts (quick filter, buttons) inside `GridToolbarContainer` or the grid's `Toolbar`.
+- `rowSelectionModel` is an array of the selected row ids. The Playbook `DataGridPremium` also accepts the `{ type, ids: Set }` shape from MUI X 8 and later, and reads it as the selected ids.
+- A toolbar slot renders whenever it is set; remove it with `slots={{ toolbar: null }}`. Custom toolbars render their parts inside `GridToolbarContainer`.
 - Grid-internal buttons are contained secondary, set once in the theme (`MuiDataGrid` default `slotProps.baseButton`).
-- `@mui/x-data-grid-premium` is installed, so Premium features (row grouping, aggregation, Excel export, the AI Assistant) work. Without a Premium license key they show a watermark and log a license warning; with a Pro key they log a plan-mismatch error but keep working.
+- `@mui/x-data-grid-premium` is installed, so Premium features (row grouping, aggregation, Excel export) work. Without a Premium license key they show a watermark and log a license warning; with a Pro key they log a plan-mismatch error but keep working.
+- The AI Assistant, Charts and Pivot panels are MUI X 8 features, so the kit does not have them.
 
-## Charts, Scheduler, Chat and the Data Grid AI Assistant
+## Charts, Scheduler and Chat
 
 These MUI X packages are installed; each has a story or a reference page showing minimal, offline usage.
 
 | Package | Tier | Status | Story |
 |---|---|---|---|
-| `@mui/x-charts` (`LineChart`, `BarChart`, `SparkLineChart`) | Community (MIT) | Stable | Reference pages `/workloads` and `/` |
-| `@mui/x-charts-premium` (charts inside the Data Grid) | Premium | Stable | The Athletes, Medical roster and Forms grids |
-| `@mui/x-scheduler` (`EventCalendar`) | Community (MIT) | Beta | `Scheduler/EventCalendar` |
-| `@mui/x-scheduler-premium` (`EventTimelinePremium`, recurring events) | Premium | Beta | `Scheduler/EventTimelinePremium` |
-| `@mui/x-chat` (`ChatBox`) | MIT | Alpha | `Chat/ChatBox` |
-| `@mui/x-data-grid-premium` AI Assistant | Premium | Stable (prompt resolver helper is `unstable_`) | `Table/DataGridAiAssistant` |
+| `@mui/x-charts` 7 (`LineChart`, `BarChart`, `SparkLineChart`) | Community (MIT) | Stable | Reference pages `/workloads` and `/` |
+| `@mui/x-scheduler` (`EventCalendar`) | Community (MIT) | Beta (MUI X 9 prerelease) | `Scheduler/EventCalendar` |
+| `@mui/x-scheduler-premium` (`EventTimelinePremium`, recurring events) | Premium | Beta (MUI X 9 prerelease) | `Scheduler/EventTimelinePremium` |
+| `@mui/x-chat` (`ChatBox`) | MIT | Alpha (MUI X 9 prerelease) | `Chat/ChatBox` |
 
-- Beta and alpha versions are pinned exactly in `package.json`; expect API changes when bumping them.
-- Standalone charts (`@mui/x-charts`, outside a grid): colour series with the chart tokens (`color: 'var(--color-chart-1)'`); use `--color-chart-1` for the main series and `--color-text-muted` for context such as raw daily values. Give bottom x-axes `height: 32`: with the theme's line height, tick labels don't fit the default 25px and the chart hides them. Charts sit in a bordered `Paper` with a `subtitle1` heading, and a chart that filters the page says so in a caption ("Select a bar to see that athlete in the table").
+- Beta and alpha versions are pinned exactly in `package.json`; expect API changes when bumping them. They have no MUI X 7 release, and they accept Material UI 7.3.
+- Standalone charts: colour series with the chart tokens (`color: 'var(--color-chart-1)'`); use `--color-chart-1` for the main series and `--color-text-muted` for context such as raw daily values. In Charts 7 the legend is drawn inside the chart and axes take their space from `margin`: give charts with a bottom axis `bottom: 52` so tick labels fit, leave room at the top for a legend, and size legend items through `slotProps.legend` (see `src/pages/SquadLoad.jsx`). Hide a legend with `slotProps={{ legend: { hidden: true } }}`. Charts sit in a bordered `Paper` with a `subtitle1` heading, and a chart that filters the page says so in a caption ("Select a bar to see that athlete in the table").
 - Scheduler events take ISO `start`/`end` strings (no date adapter); give the component an explicit height.
 - The Calendar page runs on `EventCalendar`, wrapped in `src/components/Calendar/SchedulerCalendar.jsx`. The page keeps its own header, filters pane, tooltip and create panels:
   - View and date are controlled from `CalendarHeader`; the Scheduler's toolbar and side panel are hidden.
@@ -211,17 +212,14 @@ These MUI X packages are installed; each has a story or a reference page showing
   - `eventModelStructure` reads the existing event shape, so `calendar_events.json` and the panels are unchanged.
   - The Scheduler only accepts named colours, so `schedulerModel.js` gives each event a class that sets the Scheduler's `--event-*` colour variables from the event's own colour.
 - Chat needs an `adapter`. The stories use `createEchoAdapter()`; a real one streams replies from a backend (there is an AI SDK adapter in `@mui/x-chat/headless`).
-- The AI Assistant does not call a model itself: `onPrompt` must return a `PromptResponse` (filters, sorting, grouping, aggregation). In the kit, `onPrompt={resolveGridPrompt}` (`src/utils/gridAiAssistant.js`) posts to `/api/grid-prompt`, a route the dev server adds (`server/gridPrompt.js`). The route asks Claude Sonnet 5.5 for the settings, using the grid's column descriptions, and keeps the API key on the server. In iP this would be a server route in medinah.
-- To use it, keep the key in 1Password and point to it from `.env` at the repo root (git ignores it): `ANTHROPIC_API_KEY_REF=op://<vault>/<item>/<field>`. The dev server reads the key with the 1Password CLI (`op read`) on the first AI Assistant prompt and keeps it only in memory; 1Password may ask you to approve that read. You need the `op` CLI installed and signed in, with 1Password app integration on. If the key is in a 1Password account other than your default, add `ANTHROPIC_API_KEY_OP_ACCOUNT=<account>` (a shorthand, sign-in address or email from `op account list`). Alternatives: `ANTHROPIC_API_KEY=...` in `.env`, or signing in with the `ant` CLI (`ant auth login`). Without a key, the Assistant panel says how to set one up. The route only exists under `npm run dev` and `vite preview`, so the Storybook story keeps the offline stub in `src/stories/Table/utils/aiPromptStub.js`.
-- To add the Assistant to a grid, use the Playbook `DataGridPremium` with `aiAssistant`, `onPrompt={resolveGridPrompt}` and suggestions from `src/data/gridAiSuggestions.js`; the wrapper adds the panel and an "AI Assistant" toolbar button. `allowAiAssistantDataSampling` sends a few example values per column with each prompt, which helps Claude match words to the data. That is fine for the kit's mock data; in iP it would send real athlete data to the model.
-- Charts in a grid: `chartsIntegration` on the Playbook `DataGridPremium` adds a Charts button and panel, and draws the chart below the grid (`@mui/x-charts-premium`). The AI Assistant can build charts and pivots too ("average training load by squad as a chart", "wellbeing by squad per position group"); pick the chart type in the Charts panel. Grids with the AI Assistant also get a Pivot button, so a pivot it turns on can be turned off.
 - Grids on kit pages use the Playbook `DataGridPremium`, which shows the toolbar (columns, filters, density, export, search) by default. Pages can add `slots` and `slotProps` (a pagination component, for example) without losing the toolbar.
 
 Date pickers:
-- Range pickers default to a single input in v9. For separate Start and End fields, pass `slots={{ field: MultiInputDateRangeField }}`.
+- Range pickers default to separate Start and End fields in v7. For one input, pass `slots={{ field: SingleInputDateRangeField }}`.
+- The day in a calendar is `PickersDay` (class `.MuiPickersDay-root`, theme key `MuiPickersDay`).
 - Picker text-field props go under `slotProps={{ textField: { slotProps: { input, htmlInput } } }}`.
 
-Icons: bare `*Outline` icons (for example `DeleteOutline`) were removed; use the `*Outlined` variant.
+Icons: use the `*Outlined` variant (for example `DeleteOutlined`), not the bare `*Outline` icons.
 
 The theme also overrides `react-is` to React 18's version (`overrides` in `package.json`), as the MUI guides advise for React 18.
 

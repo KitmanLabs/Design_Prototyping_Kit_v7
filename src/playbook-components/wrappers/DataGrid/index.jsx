@@ -312,9 +312,6 @@ const DataGrid = ({
         (asyncPagination ? defaultPaginationModel : undefined)
       }
       pageSizeOptions={paginationEnabled ? pageSizeOptions : [rows.length]}
-      // MUI X v8+ only renders the toolbar slot when showToolbar is set. Kit: show it unless a
-      // caller removes the toolbar slot (toolbar: null) or passes showToolbar={false}.
-      showToolbar={Boolean(slots.toolbar)}
       {...otherMuiDataGridProps}
       sx={{
         ...otherMuiDataGridProps.sx,

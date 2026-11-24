@@ -94,8 +94,14 @@ export default function NotificationsPage() {
             disableRowSelectionOnClick
             autoHeight
             hideFooter
-            rowSelectionModel={{ type: 'include', ids: new Set(selectedIds) }}
-            onRowSelectionModelChange={(model) => setSelectedIds([...model.ids])}
+            rowSelectionModel={selectedIds}
+            // The grid reports the selection again after each update; keep the same array when
+            // nothing changed, or the new array feeds back into the grid and loops.
+            onRowSelectionModelChange={(model) =>
+              setSelectedIds((current) =>
+                current.length === model.length && current.every((id, index) => id === model[index]) ? current : [...model]
+              )
+            }
           />
         </Box>
       </Paper>

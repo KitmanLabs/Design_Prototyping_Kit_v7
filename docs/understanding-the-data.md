@@ -30,7 +30,6 @@ The club's people and records (athletes, staff, squads, injuries, games, trainin
 | `forms.js` | Forms pages and drawers: rows, summaries and option lists | Config |
 | `games_matches.js` | The First Team's recent and upcoming games | Generated |
 | `generated.test.js` | generated.test.js | Config |
-| `gridAiSuggestions.js` | gridAiSuggestions.js | Config |
 | `injuries_medical.js` | Medical records and injuries, current and resolved | Generated |
 | `injuryOptions.js` | Steps and option lists for the Log injury flow | Config |
 | `layout.js` | Layout constants (navigation, page titles) | Config |

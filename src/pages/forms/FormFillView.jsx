@@ -864,10 +864,9 @@ export default function FormFillView() {
                     variant="filled"
                     placeholder="Search templates"
                     slotProps={{
-                      ...params.slotProps,
-
+                      // MUI v7: Autocomplete passes the input props as InputProps
                       input: {
-                        ...params.slotProps.input,
+                        ...params.InputProps,
                         startAdornment: (
                           <InputAdornment position="start">
                             <SearchOutlined fontSize="small" sx={{ color: 'var(--color-text-secondary)' }} />

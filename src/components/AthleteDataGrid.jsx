@@ -4,8 +4,6 @@ import { Box, Typography, Chip } from '@mui/material';
 import { DeleteOutlined, ArchiveOutlined } from '@mui/icons-material';
 import { DataGridPremium } from '../playbook-components';
 import athletesData from '../data/athletes';
-import { ATHLETES_AI_SUGGESTIONS } from '../data/gridAiSuggestions';
-import { resolveGridPrompt } from '../utils/gridAiAssistant';
 import '../styles/design-tokens.css';
 import { dataGridStyles } from './dataGridStyles';
 
@@ -105,8 +103,7 @@ const columns = [
 ];
 
 // Athletes in a Playbook DataGridPremium: the standard toolbar (columns, filters, density,
-// export, search) and the AI Assistant. Search stays in the grid toolbar, next to the AI
-// Assistant.
+// export, search). Search stays in the grid toolbar.
 //
 // Selection: on a floorplan page, pass onSelectionChange (and rowSelectionIds to control it)
 // and let PageFrame's selection bar hold the bulk actions, as on every Collection. Without
@@ -149,15 +146,8 @@ const AthleteDataGrid = ({
         checkboxSelection
         bulkActions={bulkActions}
         {...(rowSelectionIds && { rowSelectionModel: rowSelectionIds })}
-        {...(onSelectionChange && { onRowSelectionModelChange: (model) => onSelectionChange([...model.ids]) })}
+        {...(onSelectionChange && { onRowSelectionModelChange: (model) => onSelectionChange([...model]) })}
         slots={{ noRowsOverlay: NoAthletesOverlay }}
-        aiAssistant
-        chartsIntegration
-        onPrompt={resolveGridPrompt}
-        aiAssistantSuggestions={ATHLETES_AI_SUGGESTIONS}
-        // Sends a few sample values per column with each prompt, so Claude can match words like
-        // "injured" to the data. Fine for mock data; in iP this would send real athlete data.
-        allowAiAssistantDataSampling
         {...props}
       />
     </Box>

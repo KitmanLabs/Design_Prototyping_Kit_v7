@@ -11,8 +11,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Button, DataGridPremium, TabBar } from 'playbook-components';
 import { PageFrame, PageHeader, useToasts, useNavigationToast } from '../../floorplans';
-import { resolveGridPrompt } from '../../utils/gridAiAssistant';
-import { MEDICAL_ROSTER_AI_SUGGESTIONS } from '../../data/gridAiSuggestions';
 import {
   SearchOutlined,
   MoreVertOutlined,
@@ -467,12 +465,6 @@ function MedicalPage() {
               disableColumnMenu
               rowHeight={72}
               columnHeaderHeight={56}
-              aiAssistant
-              chartsIntegration
-              onPrompt={resolveGridPrompt}
-              aiAssistantSuggestions={MEDICAL_ROSTER_AI_SUGGESTIONS}
-              // Mock data only: sends sample values with each prompt (see AthleteDataGrid)
-              allowAiAssistantDataSampling
               sx={{
                 // Shared styles come from gridSx on the wrapper; these are the Medical-only additions
                 border: 'none',

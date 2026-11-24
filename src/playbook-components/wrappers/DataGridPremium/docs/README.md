@@ -97,12 +97,10 @@ These props are used when `asyncPagination` is `true`.
   `false` otherwise): If `true`, displays checkboxes for row selection.
 - `disableRowSelectionOnClick?: boolean` (default: `true`): If `true`, clicking
   a row will not select it (selection only via checkbox or other means).
-- `rowSelectionModel?: GridRowSelectionModel | GridRowId[]`: Controlled state for
-  selected rows. MUI X v8+ uses `{ type: 'include', ids: Set<GridRowId> }`; the
-  wrapper also accepts a plain array of ids. The grid runs with
-  `disableRowSelectionExcludeModel`, so `ids` are always the selected rows.
-- `onRowSelectionModelChange?: (newSelectionModel: GridRowSelectionModel) => void`:
-  Callback for when the row selection changes; receives the `{ type, ids }` model.
+- `rowSelectionModel?: GridRowId[]`: Controlled state for selected rows. MUI X v7
+  models selection as an array of row ids.
+- `onRowSelectionModelChange?: (newSelectionModel: GridRowId[]) => void`:
+  Callback for when the row selection changes; receives the array of selected ids.
 
 ### Toolbar Configuration Props
 

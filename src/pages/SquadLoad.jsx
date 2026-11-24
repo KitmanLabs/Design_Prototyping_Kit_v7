@@ -169,12 +169,23 @@ function SquadLoad() {
             <Paper elevation={0} sx={{ border: '1px solid var(--color-border-primary)', borderRadius: 'var(--radius-md)', p: 2 }}>
               <Typography variant="subtitle1" component="h2" sx={{ fontWeight: 600 }}>Squad daily load</Typography>
               <LineChart
-                height={260}
+                // MUI X Charts v7 draws the legend inside the chart and sizes axes through the margin,
+                // so the height includes the legend row and the margin leaves room for tick labels
+                height={282}
+                margin={{ top: 42, right: 20, bottom: 52, left: 65 }}
+                slotProps={{
+                  legend: {
+                    itemMarkWidth: 14,
+                    itemMarkHeight: 2,
+                    markGap: 6,
+                    itemGap: 16,
+                    padding: { top: 4 },
+                    labelStyle: { fontSize: 12 },
+                  },
+                }}
                 xAxis={[{
                   data: squadDaily.map((d) => moment(d.date).format(axisDateFormat)),
                   scaleType: 'point',
-                  // The theme's label line height needs more than the default 25px, or labels are hidden
-                  height: 32,
                   tickInterval: (_value, index) => (squadDaily.length - 1 - index) % 7 === 0,
                 }]}
                 series={[
@@ -189,14 +200,14 @@ function SquadLoad() {
               <BarChart
                 height={260}
                 layout="horizontal"
-                yAxis={[{ data: athleteRows.map((r) => r.athleteName.split(' ')[0]), scaleType: 'band', width: 70 }]}
-                xAxis={[{ height: 32 }]}
+                margin={{ top: 20, right: 20, bottom: 52, left: 90 }}
+                yAxis={[{ data: athleteRows.map((r) => r.athleteName.split(' ')[0]), scaleType: 'band' }]}
                 series={[{ data: athleteRows.map((r) => r.totalLoad), label: 'Total load (AU)', color: 'var(--color-chart-1)' }]}
                 onItemClick={(_event, item) => {
                   setFlaggedOnly(false)
                   setAthleteFilter(athleteRows[item.dataIndex].id)
                 }}
-                hideLegend
+                slotProps={{ legend: { hidden: true } }}
               />
             </Paper>
           </Box>

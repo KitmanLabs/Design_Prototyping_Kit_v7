@@ -23,22 +23,18 @@ const renderAt = (path) =>
 // Each page renders through the real router and shell without throwing. Full data grids
 // render slowly in jsdom, so these tests get a longer time limit.
 describe('pages', { timeout: 30000 }, () => {
-  it('renders the athletes grid with its toolbar and AI Assistant', async () => {
+  it('renders the athletes grid with its toolbar', async () => {
     renderAt('/athletes')
     expect(await screen.findByRole('grid', {}, { timeout: 15000 })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /columns/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /ai assistant/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /charts/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /pivot/i })).toBeInTheDocument()
   })
 
   it('shows the grid toolbar on the Forms page', async () => {
     renderAt('/forms')
     expect(await screen.findByRole('button', { name: /filters/i }, { timeout: 15000 })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /ai assistant/i })).toBeInTheDocument()
   })
 
-  it('shows the grid toolbar on pages without the AI Assistant', async () => {
+  it('shows the grid toolbar on other grid pages', async () => {
     renderAt('/forms/medical-assessment/assignments')
     expect(await screen.findByRole('button', { name: /columns/i }, { timeout: 15000 })).toBeInTheDocument()
     expect(screen.queryByRole('button', { name: /ai assistant/i })).not.toBeInTheDocument()

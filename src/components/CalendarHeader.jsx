@@ -488,7 +488,7 @@ const CalendarHeader = ({
                   },
                 },
               },
-              '& .MuiPickerDay-dayButton': {
+              '& .MuiPickersDay-root': {
                 cursor: 'pointer',
                 color: 'var(--color-primary)',
                 fontFamily: 'var(--font-family-primary)',

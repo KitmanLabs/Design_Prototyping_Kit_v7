@@ -29,14 +29,14 @@ Storybook's sidebar groups the components like this:
 | Navigation | Tabs and TabBar, menus, drawers, steppers, bottom navigation, links |
 | Feedback | Dialogs, confirmation modals, alerts, toasts, snackbars, progress, skeletons |
 | Data Display | Avatars, badges, chips, lists, tooltips, typography, availability labels |
-| Table | DataGrid, DataGridPremium (bulk actions, row grouping), the AI Assistant, expanding cells |
+| Table | DataGrid, DataGridPremium (bulk actions, row grouping), expanding cells |
 | Surfaces | Cards, paper, accordions, app bars, the bulk action bar |
 | Layout | Box, Grid, Stack, containers, image lists |
 | Scheduler | Event calendar (day, week, month, agenda) and event timeline (beta) |
 | Chat | Chat box (alpha) |
 | Utils | Modals, poppers, popovers, transitions |
 
-Scheduler and Chat are early MUI releases: fine to prototype with, but expect changes. The Event timeline and the Data Grid's AI Assistant are MUI Premium features.
+Scheduler and Chat are early MUI releases: fine to prototype with, but expect changes. The Event timeline is a MUI Premium feature.
 
 ---
 

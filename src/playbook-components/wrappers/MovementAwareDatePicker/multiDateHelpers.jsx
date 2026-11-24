@@ -5,7 +5,7 @@ import {
 } from '@mui/x-date-pickers/PickersLayout';
 import {
   Box,
-  PickerDay,
+  PickersDay,
   TextField,
   Chip,
   Grid,
@@ -27,7 +27,7 @@ export function MultiDayRenderer({ selections, onClick, ...rest }) {
   );
 
   return (
-    <PickerDay
+    <PickersDay
       {...rest}
       selected={selected}
       onClick={() => {

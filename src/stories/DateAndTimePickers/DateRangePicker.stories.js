@@ -1,4 +1,7 @@
-import { DateRangePicker } from '../../playbook-components';
+import { DateRangePicker, SingleInputDateRangeField } from '../../playbook-components';
+
+// MUI X v7 range pickers default to separate Start and End fields; the kit shows one input.
+const singleInput = { field: SingleInputDateRangeField };
 
 const docs = {
   muiLink: 'https://mui.com/x/react-date-pickers/date-range-picker/',
@@ -9,7 +12,7 @@ const docs = {
 export default {
   title: 'Date & Time Pickers/Date Range Picker',
   component: DateRangePicker,
-  render: ({ ...args }) => <DateRangePicker {...args} />,
+  render: ({ ...args }) => <DateRangePicker slots={singleInput} {...args} />,
   parameters: {
     layout: 'centered',
     docs: {
@@ -76,6 +79,7 @@ export const Story = {
 
 export const WithHelperText = () => (
   <DateRangePicker
+    slots={singleInput}
     label="Helper text example"
     slotProps={{
       textField: {

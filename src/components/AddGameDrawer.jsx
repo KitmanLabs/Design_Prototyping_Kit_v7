@@ -410,8 +410,8 @@ const AddGameDrawer = ({ open, onClose, onSave, athletes = [], staff = [], editi
                         placeholder="No athletes selected"
                         sx={formFieldStyles}
                         slotProps={{
-                          ...params.slotProps,
-                          inputLabel: { shrink: true }
+                          // MUI v7: Autocomplete passes the label props as InputLabelProps
+                          inputLabel: { ...params.InputLabelProps, shrink: true }
                         }}
                       />
                     )}

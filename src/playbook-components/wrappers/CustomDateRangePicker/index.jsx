@@ -219,7 +219,7 @@ function CustomDateRangePicker({
     if (!isCalendarOpen) return;
 
     const addEventListeners = () => {
-      document.querySelectorAll('.MuiPickerDay-root').forEach((day) => {
+      document.querySelectorAll('.MuiPickersDay-root').forEach((day) => {
         day.addEventListener('mouseenter', handleDayMouseEnter);
         day.addEventListener('mouseleave', handleDayMouseLeave);
       });
@@ -230,7 +230,7 @@ function CustomDateRangePicker({
     // eslint-disable-next-line consistent-return
     return () => {
       clearTimeout(timer);
-      document.querySelectorAll('.MuiPickerDay-root').forEach((day) => {
+      document.querySelectorAll('.MuiPickersDay-root').forEach((day) => {
         day.removeEventListener('mouseenter', handleDayMouseEnter);
         day.removeEventListener('mouseleave', handleDayMouseLeave);
       });

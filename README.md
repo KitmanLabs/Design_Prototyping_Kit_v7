@@ -37,7 +37,7 @@ Claude Code reads [`CLAUDE.md`](CLAUDE.md) at the start of every session.
 ## Tech
 
 - **React 18** and **Vite 7**
-- **Material UI 9** and **MUI X 9** (Data Grid, Date Pickers, Scheduler, Chat), wrapped as Playbook Components that match iP
+- **Material UI 7** and **MUI X 7** (Data Grid, Date Pickers, Charts), the same versions as the Playbook, wrapped as Playbook Components that match iP. Scheduler and Chat are MUI X 9 prereleases that run on Material UI 7
 - **Storybook 10**: the interactive component catalogue (`npm run storybook`)
 - **Design tokens** in `src/styles/design-tokens.css`, enforced by ESLint and Stylelint rules
 - **Mock data** in `src/data`: no backend and no API

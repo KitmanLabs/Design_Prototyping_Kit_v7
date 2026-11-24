@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 ## Project overview
-Athlete management design system prototype for Kitman Labs. React 18, Vite 7, Material UI 9 and MUI X 9, Emotion, Storybook 10, ESLint 9.
+Athlete management design system prototype for Kitman Labs. React 18, Vite 7, Material UI 7 and MUI X 7, Emotion, Storybook 10, ESLint 9.
 This repo is a **design system reference implementation**: correct use of design tokens and components is the primary quality bar.
 
 ## Common commands
@@ -63,16 +63,16 @@ import { Button } from '@mui/material'
 | Chip          |                                           | medium                        |
 | IconButton    |                                           | medium (MUI default)          |
 
-For a loading state, use Button's `loading` prop (there is no LoadingButton in MUI 9).
+For a loading state, use Button's `loading` prop (no need for LoadingButton from `@mui/lab`).
 
-The kit runs MUI 9 ahead of iP on purpose: iP is moving to MUI 9 and MUI X 9.
+The kit runs the same MUI versions as the Playbook (KitmanLabs/kitman-playbook): Material UI 7.3 and MUI X 7.29.
 
-## MUI 9 APIs (critical)
+## MUI 7 APIs (critical)
 - **slotProps, not the removed props**: `InputProps` → `slotProps.input`, `inputProps` → `slotProps.htmlInput`, `InputLabelProps` → `slotProps.inputLabel`, `SelectProps` → `slotProps.select`, Menu/Popover/Drawer/Dialog `PaperProps` → `slotProps.paper`, `MenuListProps` → `slotProps.list`
 - **Grid**: `<Grid size={{ xs: 12, sm: 6 }}>`; no `item`, no `xs=`/`sm=` props
-- **DataGrid**: `valueGetter`/`valueFormatter` take `(value, row)`; `rowSelectionModel` is `{ type, ids: Set }`; a toolbar slot only shows with `showToolbar`
-- Details and the full list: `docs/reference/design-system.md` → "MUI 9 APIs"
-- Also installed: MUI X Charts (and Charts Premium for grid charts), Scheduler (beta), Chat (alpha) and Data Grid Premium with the AI Assistant. Usage notes and stories: `docs/reference/design-system.md` → "Charts, Scheduler, Chat and the Data Grid AI Assistant". The AI Assistant is on the Athletes, Medical roster and Forms grids; under `npm run dev` it asks Claude through `/api/grid-prompt` (`server/gridPrompt.js`), reading the key from 1Password via `ANTHROPIC_API_KEY_REF` (an `op://` reference) in `.env`.
+- **DataGrid**: `valueGetter`/`valueFormatter` take `(value, row)`; `rowSelectionModel` is an array of row ids; a toolbar slot shows whenever it is set
+- Details and the full list: `docs/reference/design-system.md` → "MUI 7 APIs"
+- Also installed: MUI X Charts, Scheduler (beta) and Chat (alpha). Usage notes and stories: `docs/reference/design-system.md` → "Charts, Scheduler and Chat". Scheduler and Chat only exist as MUI X 9 prereleases; they run on Material UI 7.3.
 
 ## Design rules (enforced by linting)
 - **Colors**: always `var(--color-primary)` and other tokens, never hardcoded hex/rgb/hsl

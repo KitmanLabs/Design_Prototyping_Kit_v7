@@ -105,7 +105,7 @@ import { dataGridStyles } from '../../components/dataGridStyles'
 2. `src/components`: AthleteDataGrid, PlayerAvatar, LogoImage, StatusChip, Card, Icon
 3. `@mui/material`: only when 1 and 2 have no equivalent
 
-Follow the MUI 9 APIs and design rules in `docs/reference/design-system.md`.
+Follow the MUI 7 APIs and design rules in `docs/reference/design-system.md`.
 
 ## Reference pages
 
